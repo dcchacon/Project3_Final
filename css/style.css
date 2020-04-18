@@ -18,6 +18,9 @@ img {
   }
 #map { height: 550px; }
 
+.panel-primary {
+  padding: 5%;
+}
 .navbar {
   position: sticky;
   top: 0
@@ -120,6 +123,18 @@ body {
   background: #f1f7ff;
 }
 
+/* figure {
+  text-align: center;
+  padding-left: 5%;
+} */
 tr {
   text-align: left;
 }
+/* .pretty-container {
+  text-align: center;
+} */
+
+/* figure class="highcharts-figure */
+/* #container {
+  padding: 10%;
+} */
