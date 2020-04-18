@@ -1,0 +1,125 @@
+body {
+    background-color: unset;
+  }
+/* table {
+  border-collapse: collapse;
+  width: 100%;
+} */
+/* th, td {
+  text-align: left;
+  padding: 8px;
+} */
+tbody>tr:nth-child(even){background-color: #f2f2f2 !important}
+tbody>tr:nth-child(odd){background-color: #fff !important}
+img {
+    width: 100%;
+    height: auto;
+    padding: 2%;
+  }
+#map { height: 550px; }
+
+.navbar {
+  position: sticky;
+  top: 0
+}
+.navbar-text {
+  align-items: flex-end;
+}
+nav.navbar-nav {
+  align-items: flex-end;
+}
+nav.navbar {
+   justify-content: flex-end;
+}
+body {
+  color: #fff9f9;
+  /* background-color: rgb(114, 54, 54); */
+  }
+  h1 {
+  /* color: brown; */
+  font-size: xx-large;
+        
+  }
+  .header {
+    /* font-size:36pt; */
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        /* text-transform: uppercase; */
+    color: white;
+  }
+  .center {
+    text-align: center;
+  }
+  h3 {
+  color: rgb(40, 10, 175);
+  font-style: italic;
+
+  }
+  .jumbotron {
+  background-image: url('https://wallpaperaccess.com/full/1743472.jpg')
+     
+}
+  .btn {
+  background-color: black;
+  border-color: black;
+  }
+  th {
+    color: white;
+    text-align: left;
+    font-weight:bold
+    
+  }
+  td {
+    color: white;
+  }
+  .img-fluid {
+    text-align:center;
+  }
+
+
+
+
+/* Frances CSS */
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 320px; 
+  max-width: 700px;
+  margin: 1em auto;
+}
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 320px; 
+  max-width: 500px;
+  margin: 1em auto;
+}
+#container {
+  height: 400px;
+}
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+tr {
+  text-align: left;
+}

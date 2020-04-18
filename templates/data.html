@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <title>CA Energy | DATA</title>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Who Run The World</a>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Project </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Data <span class="sr-only">(current)</span></a>
+        </li>
+
+      </ul>
+      <span class="navbar-text">
+        California Power Plants Data Analysis
+    </div>
+  </nav>
+
+  <div class="containerfluid">
+    <div class="row flex-display">
+      <div class="col-md-12 jumbotron text-center"
+        style=" background-size: cover; background-position: center; height: 200px;">
+        <h1 class="header">
+          CA Energy
+
+        </h1>
+        <p class="header">
+          <!-- <font color="white"><b> -->
+          California power generation and power sources
+          <!-- </font></b> -->
+        </p>
+      </div>
+    </div>
+
+    <!-- <div class="containerfluid">
+    <div class="jumbotron text-center">
+      <h1 class="header">Energy Power Plants DATA</h1>
+      <a href="/data.html" class="btn btn-info" role="button">Let's scrape something new!</a>
+    </div>
+  </div> -->
+
+    <div class="containerfluid">
+      <div class="col-md-12">
+        <div class="row">
+          <!-- <a href="/templates/data.html" class="btn btn-info" role="button">Let's scrape something new!</a> -->
+        </div>
+        <div class="row">
+
+          <div class="col-md-12">
+            <h3>Energy Data </h3>
+            <div>
+              {{data.data_table | safe}}
+            </div>
+          </div>
+        </div>
+        <br>
+
+      </div>
+    </div>
+
+</body>
+
+</html>
