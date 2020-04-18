@@ -2,18 +2,7 @@ url = "https://opendata.arcgis.com/datasets/4a702cd67be24ae7ab8173423a768e1b_0.g
 
 
 
-var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
-  attribution: "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>",
-  maxZoom: 18,
-  id: "mapbox.light",
-  accessToken: API_KEY
-});
-var myMap = L.map("map", {
-  center: [34.052235, -118.243683],
-  zoom: 7,
-});
-// Adding tile layer to the map
-lightmap.addTo(myMap);
+
 
 var gData
 var onlineyear
@@ -26,7 +15,9 @@ var state
 
 
 
+
 function init() {
+  var markerLayer=L.layerGroup([])
   var select = d3.select("#selectNumber");
   d3.json(url, (data) => {
     gData = data
@@ -47,19 +38,57 @@ function init() {
         .property("value", sample);
     });
 
-
-
-    L.geoJson(data, {
-      onEachFeature: function (feature, layer) {
-        var newMarker = L.marker([feature.properties.Latitude, feature.properties.Longitude]);
-        newMarker.addTo(myMap);
-        newMarker.bindPopup("Plant Label: " + feature.properties.Plant_Label + "<br>");
+     
+    
+    d3.json(url, function(response) {
+      var gData=response.features
+      // Create a new marker cluster group
+      //var markers = L.layerGroup();
+      var markersArray=[]
+      // Loop through data
+      for (var i = 0; i < gData.length; i++) {
+    
+        // Set the data location property to a variable
+        
+         var location=gData[i].properties
+        // Check for location property
+        if (location) {
+          var lat=location.Latitude
+          var long=location.Longitude
+          //  console.log(lat)
+          // Add a new marker to the cluster group and bind a pop-up
+          //markers.addLayer(L.marker([lat, long]))
+          markersArray.push(L.marker([lat, long]))
+         //markers.addLayer(L.marker([34.65111203094099, -105.46167026068815]))
+          //.bindPopup("Plant Label: " + gData[i].properties.Plant_Label + "<br>"))
+        }
+    
       }
+      console.log(markersArray)
+       markerLayer=L.layerGroup(markersArray)
+       console.log(markerLayer)
+      // Add our marker cluster layer to the map
+      //myMap.addLayer(markers);
+        var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>",
+        maxZoom: 18,
+        id: "mapbox.light",
+        accessToken: API_KEY
+      });
+      
+      var myMap = L.map("map", {
+        center: [34.052235, -118.243683],
+        zoom: 7,
+        layers: [markerLayer]
+      });
+      // Adding tile layer to the map
+      lightmap.addTo(myMap);
+    
     })
 
   }
   )
-
+  
 
 }
 
@@ -81,12 +110,12 @@ function newId(sample) {
   createBubblechart(onlineyear, MWproduction, energy_type, filterData)
   createTimeline(energy_type, income)
   createPieChart(filterData)
+  createMap(filterData)
 
 }
 
 function createMap(filterData) {
-
-
+  markerLayer.clearLayers();
   for (i = 0; i < filterData.length; i++) {
     var newMarker = L.marker(filterData[i].properties.Latitude, filterData[i].properties.Longitude);
     newMarker.addTo(myMap);
