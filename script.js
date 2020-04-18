@@ -75,18 +75,20 @@ function newId(sample) {
   county = filterData.map(d => d.properties.County)
   state = filterData.map(d => d.properties.state)
   airbasin = filterData.map(d => d.properties.Air_Basin)
+  // latitude = filterData.map(d => d.properties.Latitude == null ? undefined)
 
 
   createBarChart(energy_type, MWproduction)
   createBubblechart(onlineyear, MWproduction, energy_type, filterData)
   createTimeline(energy_type, income)
   createPieChart(filterData)
-
+  console.log("filterData:", filterData)
+  createMap(filterData)
 }
 
 function createMap(filterData) {
-
-
+   
+   
   for (i = 0; i < filterData.length; i++) {
     var newMarker = L.marker(filterData[i].properties.Latitude, filterData[i].properties.Longitude);
     newMarker.addTo(myMap);
@@ -151,59 +153,59 @@ function createPieChart(filterData) {
 
 
   for (var item, i = 0; item = filterData[i++];) {
-      var air = item.properties.Air_Basin;
+    var air = item.properties.Air_Basin;
 
-      if (air != null) {
-          var mw = item.properties.MW;
-          if (!(air in lookup)) {
-              lookup[air] = 1;
-              airbasin.push(air);
-              MW.push(mw);
-          } else {
-              MW[airbasin.indexOf(air)] = MW[airbasin.indexOf(air)] + mw;
-          }
+    if (air != null) {
+      var mw = item.properties.MW;
+      if (!(air in lookup)) {
+        lookup[air] = 1;
+        airbasin.push(air);
+        MW.push(mw);
+      } else {
+        MW[airbasin.indexOf(air)] = MW[airbasin.indexOf(air)] + mw;
       }
+    }
   }
 
   var chartSeries = [];
-  
+
   for (var i = 0; i < airbasin.length; i++) {
     chartSeries.push({ name: airbasin[i], y: MW[i] });
   }
 
   Highcharts.chart('container', {
-      chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: null,
-          plotShadow: false,
-          type: 'pie'
-      },
-      title: {
-          text: 'Energy Produced per Area Basin'
-      },
-      tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      accessibility: {
-          point: {
-              valueSuffix: '%'
-          }
-      },
-      plotOptions: {
-          pie: {
-              allowPointSelect: true,
-              cursor: 'pointer',
-              dataLabels: {
-                  enabled: true,
-                  format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-              }
-          }
-      },
-      series: [{
-          name: 'Brands',
-          colorByPoint: true,
-          data: chartSeries
-      }]
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Energy Produced per Air Basin'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+      point: {
+        valueSuffix: '%'
+      }
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        }
+      }
+    },
+    series: [{
+      name: 'Brands',
+      colorByPoint: true,
+      data: chartSeries
+    }]
   });
 }
 
@@ -318,7 +320,7 @@ function initPieChart(gData) {
       type: 'pie'
     },
     title: {
-      text: 'Energy Produced per Area Basin'
+      text: 'Energy Produced per Air Basin'
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

@@ -11,6 +11,10 @@ client = pymongo.MongoClient(conn)
 energy_db = client.energy
 table = energy_db.energy_data
 
+# @app.route("/test")
+# def test():
+#     return render_template("index.html")
+
 
 @app.route("/")
 def mainroute():      
